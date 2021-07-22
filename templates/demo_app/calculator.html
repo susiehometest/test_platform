@@ -1,0 +1,26 @@
+<h1>计算器</h1><br>
+<!-- 表单的方式
+<form action="/calculator/" method="post">
+  <input type="text" name="number_a" /> + <input type="text" name="number_b" /> = {{result}}
+  <input type="submit" value="计算" />
+
+</form> -->
+<input type="text" id="number_a" /> + <input type="text" id="number_b" /> = <span id ="result"></span>
+<button onclick="count()">计 算</button>
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script>
+function count()
+{
+var numberA =$("#number_a").val()
+var numberB =$("#number_b").val()
+$.post("/api/add/",{
+        number_a:numberA,
+        number_b:numberB
+        }, function(result) {
+        // window.alert(result.data.count);
+       //$("#result").append(result.data.count) //用此方法，因这个是追加功能，计算多次，结果会多次追加显示有误
+       document.querySelector("#result").innerText = result.data.count
+});
+}
+
+</script>
